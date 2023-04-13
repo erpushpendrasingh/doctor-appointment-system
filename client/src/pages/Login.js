@@ -48,7 +48,7 @@ const Login = () => {
                               Not a user Register hear
                          </Link>
                          <button className="btn btn-primary" type="submit">
-                              Register
+                              Login
                          </button>
                     </Form>
                </div>
