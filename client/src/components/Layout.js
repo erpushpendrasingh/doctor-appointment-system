@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/LayoutStyles.css";
-import { message } from "antd";
+import { Image, message } from "antd";
 import { adminMenu, userMenu } from "../Data/data";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
                <div className="layout">
                     <div className="sidebar">
                          <div className="logo">
-                              <h6>DOC APP</h6>
+                              <Image src="./appLogo.png" alt="logo.img" />
                               <hr />
                          </div>
                          <div className="menu">
