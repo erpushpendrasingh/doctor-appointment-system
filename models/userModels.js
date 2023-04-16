@@ -14,16 +14,20 @@ const userSchema = new mongoose.Schema({
      },
      isAdmin: {
           type: Boolean,
-          default:false
+          default: false,
      },
      isDoctor: {
           type: Boolean,
-          default:false
+          default: false,
+     },
+     notifacation: {
+          type: Array,
+          default: [],
      },
      seennotification: {
           type: Array,
-          default:[],
-     }
+          default: [],
+     },
 });
 const userModel = mongoose.model("users", userSchema);
 
