@@ -96,10 +96,27 @@ const authController = async (req, res) => {
 
 const applyDoctorController = async (req, res) => {
      try {
-          const doctor = await doctorModel({ ...req.body, status: "pending" });
+          const newDoctor = await doctorModel({
+               ...req.body,
+               status: "pending",
+          });
           await newDoctor.save();
           const adminUser = await userModel.findOne({ isAdmin: true });
-          // const notifacation
+          const notifacation = adminUser.notifacation;
+          notifacation.push({
+               type: "apply-doctor-request",
+               message: `${newDoctor.firstName} ${newDoctor.lastName} Has Applied For A Doctor Account`,
+               data: {
+                    doctorID: newDoctor._id,
+                    name: newDoctor.firstName + " " + newDoctor.lastName,
+                    onClickPath: "/admin/doctors",
+               },
+          });
+          await userModel.findByIdAndUpdate(adminUser._id, { notifacation });
+          res.status(201).send({
+               success: true,
+               message: "Doctor Account Applied Successfully",
+          });
      } catch (error) {
           console.log("error:", error);
           res.status(500).send({
