@@ -1,4 +1,3 @@
-// const { JsonWebTokenError } = require("jsonwebtoken");
 const userModel = require("../models/userModels");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
