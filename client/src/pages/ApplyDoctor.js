@@ -1,9 +1,41 @@
 import React from "react";
 import Layout from "../components/Layout";
-import { Col, Form, Input, Row, TimePicker } from "antd";
+import axios from "axios";
+import { Col, Form, Input, Row, TimePicker, message } from "antd";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { hideLoading, showLoading } from "../Redux/features/alertSlice";
 
 const ApplyDoctor = () => {
-     const handleFinish = (values) => {
+     const { user } = useSelector((state) => state.user);
+     const dispatch = useDispatch();
+     const navigate = useNavigate();
+     const handleFinish = async (values) => {
+          try {
+               dispatch(showLoading());
+               const res = await axios.post(
+                    "/api/v1/user/apply-doctor",
+                    { ...values, userId: user._id },
+                    {
+                         headers: {
+                              Authorization: `Bearer ${localStorage.getItem(
+                                   "token"
+                              )}`,
+                         },
+                    }
+               );
+               dispatch(hideLoading());
+               if (res.data.success) {
+                    message.success(res.data.success);
+                    navigate("/");
+               } else {
+                    message.error(res.data.success);
+               }
+          } catch (error) {
+               dispatch(hideLoading());
+               console.log(error);
+               message.error("somthing Went Wrong");
+          }
           console.log(values);
      };
      return (
@@ -28,7 +60,7 @@ const ApplyDoctor = () => {
                          <Col xs={24} md={24} lg={8}>
                               <Form.Item
                                    label="Last Name"
-                                   name="lastname"
+                                   name="lastName"
                                    required
                                    rules={[{ required: true }]}
                               >
