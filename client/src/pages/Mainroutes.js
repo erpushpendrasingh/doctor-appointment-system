@@ -12,7 +12,7 @@ import Appointments from "./Appointments";
 import Notification from "./Notification";
 import User from "./Admin/User";
 import Doctors from "./Admin/Doctors";
-import Profile from "./Admin/Profile";
+import Profile from "./Doctors/Profile";
 
 const Mainroutes = () => {
      const { loading } = useSelector((state) => state.alerts);
@@ -48,7 +48,7 @@ const Mainroutes = () => {
                               }
                          />
                          <Route
-                              path="/profile"
+                              path="/doctor/profile/:id"
                               element={
                                    <ProtectedRoute>
                                         <Profile />
