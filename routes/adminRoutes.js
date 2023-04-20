@@ -3,6 +3,7 @@ const express = require("express");
 const {
      getAllDoctorsController,
      getAllUsersController,
+     changeAccountStatusController,
 } = require("../controllers/adminCtrl");
 const authMiddleware = require("../middlewares/authMiddleware");
 
@@ -13,4 +14,12 @@ router.get("/getAllUsers", authMiddleware, getAllUsersController);
 //GET METHOD || DOCTORS
 
 router.get("/getAllDoctors", authMiddleware, getAllDoctorsController);
-module.exports=router
+module.exports = router;
+
+//GET METHOD || DOCTORS
+router.post(
+     "/changeAccountStatus",
+     authMiddleware,
+     changeAccountStatusController
+);
+module.exports = router;
