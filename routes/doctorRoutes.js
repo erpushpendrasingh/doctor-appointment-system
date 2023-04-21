@@ -11,5 +11,6 @@ router.post("/getDoctorInfo", authMiddleware, getDoctorInfoController);
 
 // POST UPDATE PROFILE
 
-router.post("/update", authMiddleware, updateProfileController);
+router.post("/updateProfile", authMiddleware, updateProfileController);
+
 module.exports = router;
