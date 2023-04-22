@@ -13,6 +13,7 @@ import Notification from "./Notification";
 import User from "./Admin/User";
 import Doctors from "./Admin/Doctors";
 import Profile from "./Doctors/Profile";
+import Booking from "./Booking";
 
 const Mainroutes = () => {
      const { loading } = useSelector((state) => state.alerts);
@@ -76,6 +77,14 @@ const Mainroutes = () => {
                               element={
                                    <ProtectedRoute>
                                         <Doctors />
+                                   </ProtectedRoute>
+                              }
+                         />
+                         <Route
+                              path="/doctor/book-appointment/:doctorId"
+                              element={
+                                   <ProtectedRoute>
+                                        <Booking />
                                    </ProtectedRoute>
                               }
                          />
